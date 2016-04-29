@@ -1,8 +1,0 @@
-6.824 Lecture 19 Paper Question Answer
-Zulsar Batmunkh
-Borg's key benefit for Google is that it efficiently utilizes cluster resources. As part of this, it is important to avoid resources being wasted by sitting idle. List and describe at least�three�techniques that Borg uses to ensure good machine and cluster utilization. What potential negative consequences, if any, does each technique have for (a) non-production/low-priority, and (b) production/high-priority workloads?
-
-Borg uses following techniques to ensure good machine and cluster utilization: 
-- Cell sharing: Most cells are shared by users and all machines support both production and non-production workloads at the same time. The negative consequence for non-prod tasks would be that they could be preempted in favor of the prod workloads. For both types of workloads, sharing resources with unrelated jobs of different workloads could slow CPU down. But the experiments involving CPI assessment showed that CPU slowdown was not big compared to the advantage from the decrease in machines.
-- Large cells: The cells are generally large so that large computations could be performed and resource fragmentation would be decreased. 
-- Resource reclamation: Borg estimates how much resource a task will use and reclaim the remaining resources it won�t use for low-priority jobs like batch jobs. For both types of workloads, now machine resources could be oversubscribed even though tasks use less than their limits. The negative consequence for low-priority jobs is that if the predictions are wrong and resources are oversubscribed, they would be killed or throttled. 11
